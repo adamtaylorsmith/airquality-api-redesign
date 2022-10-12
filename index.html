@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Air Quality</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Project ATS</title>
+    <link rel="icon" type="image/x-icon" href="/assets/01d.jpg">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-gray-700 text-center items-center justify-items-center self-center">
+
+    <div class="relative flex justify-center mb-8 sm:mb-10 md:mb-12">
+        <div class="max-w-full">
+            <img src="/assets/header.png" alt="header" class="w-screen h-24 sm:h-28 md:h-40" />
+        </div>
+        <div class="
+        absolute top-6 sm:top-10 md:top-16 
+        text-base sm:text-lg md:text-2xl lg:text-3xl
+        font-black flex justify-center
+        backdrop-brightness-150
+        py-1 px-3
+        ">Air Quality and Weather Conditions Around the World</div>
+    </div>
+
+    <div class="forms top-28 sm:top-40 md:top-52 flex flex-row gap-x-4">
+
+        <div class="w-1/2 mx-4 mt-4">
+            <div class="flex flex-col justify-center mb-12">
+                <div class="mx-4 sm:mx-12 text-sm mb-3"><p>Allow us access to your location and instantly get a GPS-defined result:</p></div>
+                <div class="mx-auto font-semibold"><button onclick="getLocation()"><img src="/assets/gps.png" alt="map icon" class="h-40" />CLICK FOR GPS</button></div>
+            </div>
+            <!-- <div class="flex justify-center text-lg mb-10">
+                <div class="">- OR -</div>
+            </div> -->
+        </div>
+
+        <div class="w-1/2 mx-4">
+            <div class="">
+                <div class="mx-auto mb-4 border p-3 rounded">
+                    <form id="countryform" class="">
+                        <label class="font-bold">Select a Country:</label><br>
+                        <select id="selectCountry"><option class="font-sm"></option>
+                        </select>&nbsp;&nbsp;
+                        <button onclick="catchStates();return false" class="text-sm">CHOOSE</button>
+                    </form>
+                </div>
+                <div class="mx-auto mb-4 border p-3 rounded">
+                    <form id="stateForm">
+                        <label class="font-bold">Select a State:</label><br>
+                        <select id="selectState"><option></option>
+                        </select>
+                        <button onclick="catchCities();return false" class="text-sm">CHOOSE</button>
+                    </form>
+                </div>
+                <div class="mx-auto border p-3 rounded">
+                    <form id="cityForm">
+                        <label class="font-bold">Select a City:</label><br>
+                        <select id="selectCity"><option></option>
+                        </select>
+                        <button onclick="catchFormData();return false" class="text-sm">CHOOSE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="results absolute top-28 sm:top-40 md:top-52 flex justify-center flex-col w-full">
+        <div class="title text-xl sm:text-3xl lg:text-4xl font-black text-gray-100 absolute top-5 left-20 md:top-12 md:left:72 lg:top-20 lg:left-96 mr-12"></div>
+        <div class="icon mx-auto flex justify-center"></div>
+        <div class="my-2 p-2">
+            <div class="aqi text-lg font-semibold text-gray-100 p-2"></div>   
+        </div>
+        <div class="my-2 flex justify-center">
+            <div class="key mx-auto">
+                <ul class="text-sm">
+                    <div class="text-xl font-bold">AQI Index defined</div>
+                    <li>0 - 50: Good / Green - air pollution poses no threat</li>
+                    <li>51 - 100: Moderate / Yellow - risk for some sensitive people</li>
+                    <li>101 - 150: Poor / Orange - unhealthy for sensitive people</li>
+                    <li>151 - 200: Unhealthy / Red - general public may experience health effects</li>
+                    <li>201 - 300: Very unhealthy / Violet: risk of health effects is increased for everyone</li>
+                    <li>301+: Hazardous / Maroon - health alert of emergency conditions</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-2">
+            <div class="key text-lg"></div>
+        </div>
+        <div class="mb-4">
+            <div class="patt text-lg"></div>
+        </div>
+        <div class="flex flex-row justify-evenly">
+
+            <div class="bg-gray-200 rounded-full border shadow-sm">
+                <div class="temp text-lg flex justify-center flex-col p-3">
+                    <div class="mx-auto"><img src="/assets/tempgauge.png" alt="gauge" class="h-10 mx-auto" /></div>
+                    <div class="mx-auto"><span class="italic">Temperature:</span></div>
+                </div>
+            </div>
+            <div class="bg-gray-200 rounded-full border shadow-sm">
+                <div class="humid text-lg flex justify-center flex-col p-3">
+                    <div class="mx-auto"><img src="/assets/humidity.png" alt="gauge" class="h-10 mx-auto" /></div>
+                    <div class="mx-auto"><span class="italic">Humidity:</span></div>
+                </div>
+            </div>
+            <div class=" bg-gray-200 rounded-full border shadow-sm">
+                <div class="speed text-lg flex justify-center flex-col p-3">
+                    <div class="mx-auto"><img src="/assets/fan.png" alt="gauge" class="h-10 mx-auto" /></div>
+                    <div class="mx-auto"><span class="italic">Wind speed:</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="flex justify-center">
+            <div class=""><button class="buttonSty"><a href="javascript:location.reload(true)">Refresh Page</a></button></div>   
+        </div> -->
+    </div>
+
+    <div class="text-sm mt-36">Adam Taylor Smith 2022</div>
+
+
+    <script src="index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+</body>
+</html>
+
+<!-- 
+wind speed / direction
+    north:      if wd>=338 || wd<=23
+    northeast:  if wd>=24 && wd<=69
+    east:       if wd>=70 && wd<=115
+    southeast:  if wd>=116 && wd<=61
+    south:      if wd>=162 && wd<=207
+    southwest:  if wd>=208 && wd<=253
+    west:       if wd>=254 && wd<=289
+    northwest:  if wd>=290 && wd<=337
+
+data:
+city: "Indianapolis"
+country: "USA"
+current:pollution:
+aqicn: 5 chinese
+aqius: 16 // 
+maincn: "p2" chinese
+mainus: "p2" //main pollutant for US AQI
+ts: "2020-09-30T03:00:00.000Z" TIMESTAMP
+
+current:weather:
+hu: 66 //humidity %
+ic: "04n" //weather icon code / .png
+pr: 1011 //atmospheric pressure in hPa
+tp: 10 //temperature in Celsius
+ts: "2020-09-30T03:00:00.000Z" TIMESTAMP
+wd: 260 //wind direction, as an angle of 360° (N=0, E=90, S=180, W=270)
+ws: 2.6 //wind speed (m/s)
+
+location:coordinates: Array(2)
+0: -86.2147
+1: 39.7889
+
+ -->
