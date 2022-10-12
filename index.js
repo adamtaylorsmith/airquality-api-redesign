@@ -31,6 +31,7 @@ const requestOptions = {
 function letsRoll() {
   document.querySelector('.forms').style.visibility = 'visible';
   document.querySelector('.results').style.visibility = 'hidden';
+  document.querySelector('.footer').style.visibility = 'visible';
   catchCountries();
 }
 letsRoll()
@@ -122,6 +123,7 @@ async function catchFormData() {
 
 function showData() {
   document.querySelector('.forms').style.visibility = 'hidden';
+  document.querySelector('.footer').style.visibility = 'hidden';
   document.querySelector('.results').style.visibility = 'visible';
 
   document.querySelector('.aqi').style.display = 'block';
@@ -147,14 +149,19 @@ function showData() {
     aqiData.style.color = '#fff';
   } else if (aqius<101) {
     aqiData.style.backgroundColor = '#f7f722';
+    aqiData.style.color = '#777';
   } else if (aqius<151) {
     aqiData.style.backgroundColor = '#ffa101';
+    aqiData.style.color = '#fff';
   } else if (aqius<201) {
     aqiData.style.backgroundColor = '#f21137';
+    aqiData.style.color = '#fff';
   } else if (aqius<301) {
     aqiData.style.backgroundColor = '#9f496e';
+    aqiData.style.color = '#fff';
   } else {
     aqiData.style.backgroundColor = '#68020f';
+    aqiData.style.color = '#fff';
   }
 
   const pattern = blob.data.current.weather.ic;
