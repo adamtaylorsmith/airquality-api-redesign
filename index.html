@@ -25,7 +25,7 @@
         font-black flex justify-center
         backdrop-brightness-150
         py-1 px-3
-        ">Air Quality and Weather Conditions Around the World</div>
+        "><a class="hover:no-underline hover:text-gray-600" href="javascript:location.reload(true)">Air Quality and Weather Conditions Around the World</a></div>
     </div>
 
     <div class="forms top-28 sm:top-40 md:top-52 flex flex-row gap-x-4">
@@ -45,85 +45,94 @@
                 <div class="mx-auto mb-4 border p-3 rounded">
                     <form id="countryform" class="">
                         <label class="font-bold">Select a Country:</label><br>
-                        <select id="selectCountry"><option class="font-sm"></option>
+                        <select class="bg-gray-100 border" id="selectCountry"><option class=""></option>
                         </select>&nbsp;&nbsp;
-                        <button onclick="catchStates();return false" class="text-sm">CHOOSE</button>
+                        <button onclick="catchStates();return false" class="text-sm bg-green-200 py-1 px-2 rounded hover:bg-green-300 hover:shadow-md">GO</button>
                     </form>
                 </div>
                 <div class="mx-auto mb-4 border p-3 rounded">
                     <form id="stateForm">
                         <label class="font-bold">Select a State:</label><br>
-                        <select id="selectState"><option></option>
+                        <select class="bg-gray-100 border" id="selectState"><option></option>
                         </select>
-                        <button onclick="catchCities();return false" class="text-sm">CHOOSE</button>
+                        <button onclick="catchCities();return false" class="text-sm bg-green-200 py-1 px-2 rounded hover:bg-green-300 hover:shadow-md">GO</button>
                     </form>
                 </div>
                 <div class="mx-auto border p-3 rounded">
                     <form id="cityForm">
                         <label class="font-bold">Select a City:</label><br>
-                        <select id="selectCity"><option></option>
+                        <select class="bg-gray-100 border" id="selectCity"><option></option>
                         </select>
-                        <button onclick="catchFormData();return false" class="text-sm">CHOOSE</button>
+                        <button onclick="catchFormData();return false" class="text-sm bg-green-200 py-1 px-2 rounded hover:bg-green-300 hover:shadow-md">GO</button>
                     </form>
                 </div>
             </div>
         </div>
+        
     </div>
     
     <div class="results absolute top-28 sm:top-40 md:top-52 flex justify-center flex-col w-full">
-        <div class="title text-xl sm:text-3xl lg:text-4xl font-black text-gray-100 absolute top-5 left-20 md:top-12 md:left:72 lg:top-20 lg:left-96 mr-12"></div>
-        <div class="icon mx-auto flex justify-center"></div>
-        <div class="my-2 p-2">
-            <div class="aqi text-lg font-semibold text-gray-100 p-2"></div>   
+        
+        <div class="icon mx-auto flex justify-center w-3/4"></div>
+
+        <div class="title text-2xl sm:text-3xl lg:text-4xl font-black my-3"></div>
+
+        <div class="mx-auto w-2/3 my-2">
+            <div class="aqi text-xl p-2 mx-10">
+                <span class="not-italic">Current AQI Index:</span>
+            </div>   
         </div>
-        <div class="my-2 flex justify-center">
-            <div class="key mx-auto">
-                <ul class="text-sm">
-                    <div class="text-xl font-bold">AQI Index defined</div>
-                    <li>0 - 50: Good / Green - air pollution poses no threat</li>
-                    <li>51 - 100: Moderate / Yellow - risk for some sensitive people</li>
-                    <li>101 - 150: Poor / Orange - unhealthy for sensitive people</li>
-                    <li>151 - 200: Unhealthy / Red - general public may experience health effects</li>
-                    <li>201 - 300: Very unhealthy / Violet: risk of health effects is increased for everyone</li>
-                    <li>301+: Hazardous / Maroon - health alert of emergency conditions</li>
-                </ul>
+
+        <div class="mb-4 mt-2">
+            <div class="patt text-lg italic">
+                <span class="not-italic text-xl">Current weather pattern:</span> 
             </div>
         </div>
-        <div class="mt-2">
-            <div class="key text-lg"></div>
-        </div>
-        <div class="mb-4">
-            <div class="patt text-lg"></div>
-        </div>
-        <div class="flex flex-row justify-evenly">
 
+        <div class="flex flex-row justify-evenly mb-8">
             <div class="bg-gray-200 rounded-full border shadow-sm">
-                <div class="temp text-lg flex justify-center flex-col p-3">
+                <div class="temp text-base sm:text-lg flex justify-center flex-col p-2 sm:p-3">
                     <div class="mx-auto"><img src="/assets/tempgauge.png" alt="gauge" class="h-10 mx-auto" /></div>
                     <div class="mx-auto"><span class="italic">Temperature:</span></div>
                 </div>
             </div>
             <div class="bg-gray-200 rounded-full border shadow-sm">
-                <div class="humid text-lg flex justify-center flex-col p-3">
+                <div class="humid text-base sm:text-lg flex justify-center flex-col p-2 sm:p-3">
                     <div class="mx-auto"><img src="/assets/humidity.png" alt="gauge" class="h-10 mx-auto" /></div>
                     <div class="mx-auto"><span class="italic">Humidity:</span></div>
                 </div>
             </div>
             <div class=" bg-gray-200 rounded-full border shadow-sm">
-                <div class="speed text-lg flex justify-center flex-col p-3">
+                <div class="speed text-base sm:text-lg flex justify-center flex-col p-2 sm:p-3">
                     <div class="mx-auto"><img src="/assets/fan.png" alt="gauge" class="h-10 mx-auto" /></div>
                     <div class="mx-auto"><span class="italic">Wind speed:</span></div>
                 </div>
             </div>
         </div>
 
-        <!-- <div class="flex justify-center">
-            <div class=""><button class="buttonSty"><a href="javascript:location.reload(true)">Refresh Page</a></button></div>   
-        </div> -->
+        <div class="my-2 mx-16 flex justify-center">
+            <div class="key mx-auto">
+                <ul class="text-sm text-left">
+                    <div class="text-xl font-bold">AQI Index defined</div>
+                    <li><span class="font-bold">0 - 50: </span>Good / Green - air pollution poses no threat</li>
+                    <li><span class="font-bold">51 - 100: </span>Moderate / Yellow - risk for some sensitive people</li>
+                    <li><span class="font-bold">101 - 150: </span>Poor / Orange - unhealthy for sensitive people</li>
+                    <li><span class="font-bold">151 - 200: </span>Unhealthy / Red - general public may experience health effects</li>
+                    <li><span class="font-bold">201 - 300: </span>Very unhealthy / Violet: risk of health effects is increased for everyone</li>
+                    <li><span class="font-bold">301+: </span>Hazardous / Maroon - health alert of emergency conditions</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            <div class="key text-lg"></div>
+        </div>
+        
+        <div class="text-sm mt-12 mb-6">Adam Taylor Smith 2022</div>
     </div>
 
-    <div class="text-sm mt-36">Adam Taylor Smith 2022</div>
-
+    
+    
 
     <script src="index.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

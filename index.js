@@ -28,10 +28,14 @@ const requestOptions = {
   redirect: 'follow'
 };
 
-async function catchCountries() {
+function letsRoll() {
   document.querySelector('.forms').style.visibility = 'visible';
   document.querySelector('.results').style.visibility = 'hidden';
+  catchCountries();
+}
+letsRoll()
 
+async function catchCountries() {
   const response = await fetch(baseURL+'countries?'+APIkey);
   blob = await response.json();
   console.log(blob.data)
@@ -44,7 +48,7 @@ async function catchCountries() {
     counrtyOption.appendChild(countryLI);
   }
 }
-catchCountries();
+// catchCountries();
 
 async function catchStates() {
   const response = await fetch(baseURL+`states?country=`+counrtyOption.value+`&`+APIkey);
@@ -135,11 +139,12 @@ function showData() {
 
   const aqius = blob.data.current.pollution.aqius;
   const showAqi = document.createElement('h2');
-  showAqi.innerText = "Current AQI index: "+aqius;
+  showAqi.innerText = aqius;
   aqiData.appendChild(showAqi);
 
   if (aqius<51) {
     aqiData.style.backgroundColor = '#048040';
+    aqiData.style.color = '#fff';
   } else if (aqius<101) {
     aqiData.style.backgroundColor = '#f7f722';
   } else if (aqius<151) {
@@ -170,7 +175,7 @@ function showData() {
     : pattern == '50d' ? 'Mist' 
     : 'Mist';
   const showPattern = document.createElement('h4');
-  showPattern.innerText = "Current weather pattern: "+patternBlock;
+  showPattern.innerText = patternBlock;
   patternData.appendChild(showPattern);
 
   const temp = blob.data.current.weather.tp;
