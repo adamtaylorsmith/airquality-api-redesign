@@ -1,5 +1,5 @@
 const baseURL = 'https://api.airvisual.com/v2/';
-const APIkey = 'key=37e7cfc3-affc-4c5f-99c0-db972ff83925';
+const APIkey = 'key=12b17a3c-8015-4b32-877c-c69ebaf06ce6';
 
 const indyData = baseURL+"city?city=Indianapolis&state=Indiana&country=USA&"+APIkey;
 const nearestCityToUser = baseURL+'nearest_city?'+APIkey;
